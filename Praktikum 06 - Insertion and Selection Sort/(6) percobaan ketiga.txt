@@ -1,0 +1,46 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+#define MAX 5
+int Data[MAX];
+
+void Tukar(int* a, int* b)
+{
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void SelectionSort()
+{
+    int i, j, k;
+    for (i = 0; i < MAX - 1; i++) {
+        k = i;
+        for (j = i + 1; j < MAX; j++)
+            if (Data[k] > Data[j])
+                k = j;
+        Tukar(&Data[i], &Data[k]);
+    }
+}
+
+int main()
+{
+    int i;
+    srand(0);
+    cout << "before" << endl;
+    for (i = 0; i < MAX; i++)
+    {
+        Data[i] = (int)rand() / 1000 + 1;
+        cout << "data number " << i << " : " << Data[i] << endl;
+    }
+    SelectionSort();
+    cout << "\nafter" << endl;
+    for (i = 0; i < MAX; i++)
+    {
+        cout << "data number " << i << " : " << Data[i] << endl;
+    }
+    return 0;
+}
